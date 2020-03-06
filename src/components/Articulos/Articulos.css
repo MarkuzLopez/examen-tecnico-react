@@ -1,0 +1,31 @@
+.contendor { 
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 300px;
+}
+
+.circulo { 
+    display: flex;
+    justify-content: flex-end;
+}
+
+.number-car { 
+    width: 50px;
+    height: 50px;
+    border: 3px solid blue;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.prueba { 
+    float: left;
+    
+}

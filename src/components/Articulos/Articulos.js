@@ -18,7 +18,8 @@ class Articulos extends Component {
     state = { 
         products: [],
         faavorites: [],
-        fetching: false
+        fetching: false,
+        total: 0
     }
 
     componentDidMount() { 
@@ -29,6 +30,7 @@ class Articulos extends Component {
             })
         })
     }
+
 
     restoreApp = () => {
         Swal.fire({
@@ -54,7 +56,7 @@ class Articulos extends Component {
     
     // agregar articulos por medio de un evento y asu vez eliminarlo
     // donde se va a llenaar en faavorites para el carro de compras
-    addCar = (articulo, indx) => { 
+    addCar = (articulo, indx) => {
        this.setState({
            faavorites: this.state.faavorites.concat(articulo),
            products: this.state.products.filter((products, index) => indx !== index)
@@ -68,7 +70,7 @@ class Articulos extends Component {
     }
 
 
-    render() { 
+    render() {
         const validar = <div className="alert alert-primary text-center"> <strong>Cargando Articulos...</strong> <br />
         <i className="fa fa-spinner fa-spin"></i><br /> <span>Espere por favor</span> </div>  
         const { products } = this.state;
@@ -97,28 +99,6 @@ class Articulos extends Component {
                 this.state.fetching ? 
                 <div className="articulos mt-5">
                     <div className="card-deck">
-                        
-                        {/* 
-                         estaa funcion del dragable se comento0 ya que desbordaa laas taarjetas 
-                         hacia abajo y no respeta los estilos de bootstraap
-                        <ReactDragList 
-                            dataSource={products}
-                            row = {
-                                (articulo, index) => 
-                                <div className="col-md-6" key={articulo.sku} >
-                                    <div className="card mt-3" >
-                                        <img src={logo} className="card-img-top" alt="..." />
-                                        <div className="card-body">
-                                        <h5 className="card-title">{articulo.name} -
-                                        ${articulo.price}</h5>
-                                        <p className="card-text">
-                                                {articulo.description}
-                                        </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        /> */}
                         {products.map((articulo, index) => (
                             <div className="col-md-4" key={articulo.sku} >
                                 <div className="card mt-3" >
@@ -154,7 +134,8 @@ class Articulos extends Component {
                                         {
                                         faavorites.length > 0 ? <button className="btn btn-danger btn-lg btn-block" onClick={this.restoreApp}  data-dismiss="modal">Vaciar Carrito</button>
                                         : <p>No hay articulos agregados</p>
-                                         }
+                                        }
+                                         
                                     </div>
                                     <div className="articulos mt-5">
                                         <div className="card-deck">
@@ -170,14 +151,13 @@ class Articulos extends Component {
                                                             </p>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerar</button>                                    
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                    
                                 </div>
                             </div>
                         </div>
